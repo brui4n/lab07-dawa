@@ -22,9 +22,11 @@ const isDev = process.env.NODE_ENV === "development";
 
 
 // Sincronización inteligente
-await db.sequelize.sync({
-  force: isDev // solo borra BD en desarrollo
-});
+if (isDev) {
+  await db.sequelize.sync({ force: true }); // borra y recrea en desarrollo
+} else {
+  await db.sequelize.sync({ alter: true }); // crea/ajusta tablas sin borrar datos en producción
+}
 
 
 // Inicializar roles (solo si no existen)
