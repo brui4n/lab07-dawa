@@ -11,8 +11,7 @@ export default {
   dialect: "mysql",
   dialectOptions: {
     ssl: {
-      require: true,
-      rejectUnauthorized: true
+      rejectUnauthorized: false
     }
   }
 };
